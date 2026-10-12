@@ -76,7 +76,7 @@
     if (it.error) { inf.textContent = it.error; return; }
     if (!it.out) { inf.textContent = 'Shrinking...'; return; }
     var before = it.file.size, after = it.out.size;
-    if (it.kept) inf.textContent = 'Already small: shrinking would make it bigger (' + size(before) + '), so your original is kept.';
+    if (it.kept) inf.textContent = 'Already small: shrinking would make it bigger (' + size(before) + '), so your original is kept. It still has any hidden details, such as where it was taken.';
     else inf.textContent = size(before) + ' to ' + size(after) + ', ' + Math.max(0, Math.round((1 - after / before) * 100)) + '% smaller.';
     var act = document.createElement('div'); act.className = 'act';
     var a = document.createElement('a'); a.className = 'btn'; a.href = it.url; a.download = it.dlname;

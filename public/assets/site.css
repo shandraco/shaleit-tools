@@ -169,3 +169,12 @@ details.more summary { cursor: pointer; font-weight: 500; min-height: 2.75rem; d
 
 /* Text links in footers and the home link: inline padding grows the tap target to 44px without moving the text */
 .home, .base a, .credit a, .group-head a { padding: 0.7rem 0; }
+
+/* Answers section under each tool: quiet, same strata look */
+.answers { margin-top: 3rem; padding-top: 2rem; border-top: 4px solid var(--seam); }
+.answers h2 { margin: 0 0 0.75rem; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+.answers h3 { margin: 1.5rem 0 0.35rem; font-size: 1.15rem; font-weight: 700; line-height: 1.25; }
+.answers p { margin: 0 0 0.5rem; max-width: 40rem; }
+.answers ol { margin: 0 0 2rem; padding-left: 1.5rem; max-width: 40rem; }
+.answers li { margin: 0 0 0.4rem; padding-left: 0.25rem; }
+.answers .faq-h { margin-top: 2.25rem; }

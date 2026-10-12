@@ -31,3 +31,7 @@ Every `src` and `href` in `public/<tool>/index.html` must be absolute (`/qr/app.
 ## License
 
 MIT, see [LICENSE](LICENSE). Third-party work and its licenses are listed in [THIRD-PARTY.md](THIRD-PARTY.md).
+
+## SEO and answer engines
+
+Each tool page has its own title, description, canonical, Open Graph and Twitter tags, JSON-LD (WebApplication, BreadcrumbList, FAQPage) and a visible "How to use it" and "Questions people ask" section. The FAQ JSON-LD must match the visible text exactly, so change both together. `public/og.png` is the shared 1200x630 share image. `robots.txt`, `sitemap.xml` and `llms.txt` live in `public/`; add a new tool to all three and to `404.html`.

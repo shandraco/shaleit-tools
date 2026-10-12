@@ -3,8 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Password maker – ShaleIT tools</title>
-<meta name="description" content="Make a strong password or an easy-to-remember passphrase. Everything happens in your browser and nothing is sent anywhere.">
+<title>Free password maker – ShaleIT tools</title>
+<meta name="description" content="Make a strong password or an easy-to-remember passphrase for free. It is made in your browser, never sent anywhere, and needs no sign-up.">
+<link rel="canonical" href="https://shaleit.tech/password">
+<meta name="theme-color" content="#c7cbc6">
+<meta property="og:title" content="Free password maker – ShaleIT tools">
+<meta property="og:description" content="Make a strong password or an easy-to-remember passphrase for free. It is made in your browser, never sent anywhere, and needs no sign-up.">
+<meta property="og:url" content="https://shaleit.tech/password">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShaleIT tools">
+<meta property="og:image" content="https://shaleit.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="shaleit.tech. Free tools that stay in your browser.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free password maker – ShaleIT tools">
+<meta name="twitter:description" content="Make a strong password or an easy-to-remember passphrase for free. It is made in your browser, never sent anywhere, and needs no sign-up.">
+<meta name="twitter:image" content="https://shaleit.tech/og.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Password maker",
+ "url": "https://shaleit.tech/password",
+ "description": "Make a strong password or an easy-to-remember passphrase for free. It is made in your browser, never sent anywhere, and needs no sign-up.",
+ "applicationCategory": "SecurityApplication",
+ "operatingSystem": "Any (runs in a web browser)",
+ "browserRequirements": "Requires a modern web browser with JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "license": "https://opensource.org/licenses/MIT",
+ "sameAs": "https://github.com/shandraco/shaleit-tools/tree/main/public/password",
+ "publisher": {
+  "@type": "Organization",
+  "name": "ShaleIT",
+  "url": "https://shaleit.tech/"
+ },
+ "image": "https://shaleit.tech/og.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "ShaleIT tools",
+   "item": "https://shaleit.tech/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Password maker",
+   "item": "https://shaleit.tech/password"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How long should a password be?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Aim for at least 12 characters for a random password, and 16 or more is better. This tool suggests 20. For a passphrase made of random words, use at least four words. Length matters more than clever symbols, because each extra character or word multiplies the guesses an attacker needs."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is a passphrase as strong as random characters?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It can be. Every word here is picked at random from a list of 7,776, so each word adds about 12.9 bits of strength. Four words give about 51 bits and six give about 78 bits. A passphrase is much easier to type and remember than a string of symbols."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it safe to make a password on a website?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It is safe here because the password is made inside your browser, using its built-in secure random number generator. Nothing is sent to a server, saved or logged. Even so, copy it straight into your password manager, and do not use a password you have shown to anyone else."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I use the same password on more than one site?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. If one site is hacked, anyone holding that password can try it everywhere else you use it. Use a different password for each account and keep them in a password manager, so you only need to remember one strong password for the manager itself."
+   }
+  }
+ ]
+}
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +189,26 @@
       <summary>How strong is it, exactly?</summary>
       <p id="bits">Strength is measured in bits. Each extra bit doubles the number of guesses an attacker would need.</p>
     </details>
+  
+    <section class="answers" aria-labelledby="how-h">
+      <h2 id="how-h">How to use it</h2>
+      <ol>
+        <li>Choose Easy to remember for a passphrase of random words, or Random characters.</li>
+        <li>Pick how many words, or how long the password should be.</li>
+        <li>Press Copy password.</li>
+        <li>Paste it into the site you are signing up to, and save it in a password manager.</li>
+      </ol>
+      <h2 id="q-h" class="faq-h">Questions people ask</h2>
+      <h3>How long should a password be?</h3>
+      <p>Aim for at least 12 characters for a random password, and 16 or more is better. This tool suggests 20. For a passphrase made of random words, use at least four words. Length matters more than clever symbols, because each extra character or word multiplies the guesses an attacker needs.</p>
+      <h3>Is a passphrase as strong as random characters?</h3>
+      <p>It can be. Every word here is picked at random from a list of 7,776, so each word adds about 12.9 bits of strength. Four words give about 51 bits and six give about 78 bits. A passphrase is much easier to type and remember than a string of symbols.</p>
+      <h3>Is it safe to make a password on a website?</h3>
+      <p>It is safe here because the password is made inside your browser, using its built-in secure random number generator. Nothing is sent to a server, saved or logged. Even so, copy it straight into your password manager, and do not use a password you have shown to anyone else.</p>
+      <h3>Can I use the same password on more than one site?</h3>
+      <p>No. If one site is hacked, anyone holding that password can try it everywhere else you use it. Use a different password for each account and keep them in a password manager, so you only need to remember one strong password for the manager itself.</p>
+    </section>
+
   </div></main>
   <footer class="layer credit"><div class="inner">
     <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/password">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>

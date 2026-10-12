@@ -1,0 +1,18 @@
+# ShaleIT tools
+
+> Free, open-source tools from ShaleIT that run entirely in the browser. Nothing you type or upload is sent anywhere, and no sign-up is needed. Licensed under the MIT License.
+
+## Tools
+
+- [QR code maker](https://shaleit.tech/qr): Make a QR code for a web address, Wi-Fi network, phone number or text, and download it as PNG or SVG.
+- [Password maker](https://shaleit.tech/password): Make a strong random password or an easy-to-remember passphrase.
+- [Image shrinker](https://shaleit.tech/image): Resize and compress photos for websites or email, and remove hidden location details.
+- [Contrast checker](https://shaleit.tech/contrast): Check text and background colours against WCAG 2.2 contrast ratios, with a one-click fix.
+- [PDF merger](https://shaleit.tech/pdf): Join several PDFs into one in the order you choose, or pull out just some pages.
+- [Unit converter](https://shaleit.tech/units): Convert length, weight, temperature, cooking volume and more. Fractions and 5'11" are accepted.
+- [Favicon maker](https://shaleit.tech/favicon): Make a favicon pack (ICO, PNGs, web manifest) from a letter or an image.
+
+## Source
+
+- [GitHub repository](https://github.com/shandraco/shaleit-tools): The code for every tool.
+- [MIT License](https://shaleit.tech/LICENSE.txt): Free to use, copy and change.

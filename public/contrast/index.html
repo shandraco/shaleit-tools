@@ -3,8 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contrast checker – ShaleIT tools</title>
-<meta name="description" content="Check that text is easy to read on its background colour. Free, and nothing leaves your device.">
+<title>Free colour contrast checker – ShaleIT tools</title>
+<meta name="description" content="Check whether text is easy to read on its background colour against WCAG 2.2, and get a one-click fix. Free, and nothing leaves your device.">
+<link rel="canonical" href="https://shaleit.tech/contrast">
+<meta name="theme-color" content="#c7cbc6">
+<meta property="og:title" content="Free colour contrast checker – ShaleIT tools">
+<meta property="og:description" content="Check whether text is easy to read on its background colour against WCAG 2.2, and get a one-click fix. Free, and nothing leaves your device.">
+<meta property="og:url" content="https://shaleit.tech/contrast">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShaleIT tools">
+<meta property="og:image" content="https://shaleit.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="shaleit.tech. Free tools that stay in your browser.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free colour contrast checker – ShaleIT tools">
+<meta name="twitter:description" content="Check whether text is easy to read on its background colour against WCAG 2.2, and get a one-click fix. Free, and nothing leaves your device.">
+<meta name="twitter:image" content="https://shaleit.tech/og.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Contrast checker",
+ "url": "https://shaleit.tech/contrast",
+ "description": "Check whether text is easy to read on its background colour against WCAG 2.2, and get a one-click fix. Free, and nothing leaves your device.",
+ "applicationCategory": "DesignApplication",
+ "operatingSystem": "Any (runs in a web browser)",
+ "browserRequirements": "Requires a modern web browser with JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "license": "https://opensource.org/licenses/MIT",
+ "sameAs": "https://github.com/shandraco/shaleit-tools/tree/main/public/contrast",
+ "publisher": {
+  "@type": "Organization",
+  "name": "ShaleIT",
+  "url": "https://shaleit.tech/"
+ },
+ "image": "https://shaleit.tech/og.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "ShaleIT tools",
+   "item": "https://shaleit.tech/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Contrast checker",
+   "item": "https://shaleit.tech/contrast"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What contrast ratio do I need?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "For the WCAG 2.2 level AA standard, normal text needs a contrast ratio of at least 4.5 to 1. Large text, and parts of the page such as icons and button borders, need at least 3 to 1. The stricter level AAA asks for 7 to 1 on normal text."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What counts as large text?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "WCAG treats text as large when it is at least 24 pixels (18 points) in regular weight, or at least about 18.7 pixels (14 points) in bold. Anything smaller counts as normal text and needs the higher 4.5 to 1 ratio, so body copy almost always falls into that group."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is a contrast ratio?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A contrast ratio is a number from 1 to 1 to 21 to 1 that compares how bright two colours are. Identical colours score 1 to 1, and black on white scores 21 to 1. The higher the number, the easier the text is to read, especially for people with low vision."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is grey text on white good enough?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Only if the grey is dark enough. The lightest grey that passes 4.5 to 1 on a white background is #767676. Anything lighter, which is common for hint text and captions, fails for normal text. Type your colours in this checker to see the exact ratio."
+   }
+  }
+ ]
+}
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +189,26 @@
         <button type="button" class="btn" id="apply">Use this colour</button>
       </div>
     </section>
+  
+    <section class="answers" aria-labelledby="how-h">
+      <h2 id="how-h">How to use it</h2>
+      <ol>
+        <li>Enter the text colour and the background colour.</li>
+        <li>Read the verdict for normal text and large text.</li>
+        <li>If it fails, press Fix it for me to get the closest colour that passes.</li>
+        <li>Copy the new colour code into your design.</li>
+      </ol>
+      <h2 id="q-h" class="faq-h">Questions people ask</h2>
+      <h3>What contrast ratio do I need?</h3>
+      <p>For the WCAG 2.2 level AA standard, normal text needs a contrast ratio of at least 4.5 to 1. Large text, and parts of the page such as icons and button borders, need at least 3 to 1. The stricter level AAA asks for 7 to 1 on normal text.</p>
+      <h3>What counts as large text?</h3>
+      <p>WCAG treats text as large when it is at least 24 pixels (18 points) in regular weight, or at least about 18.7 pixels (14 points) in bold. Anything smaller counts as normal text and needs the higher 4.5 to 1 ratio, so body copy almost always falls into that group.</p>
+      <h3>What is a contrast ratio?</h3>
+      <p>A contrast ratio is a number from 1 to 1 to 21 to 1 that compares how bright two colours are. Identical colours score 1 to 1, and black on white scores 21 to 1. The higher the number, the easier the text is to read, especially for people with low vision.</p>
+      <h3>Is grey text on white good enough?</h3>
+      <p>Only if the grey is dark enough. The lightest grey that passes 4.5 to 1 on a white background is #767676. Anything lighter, which is common for hint text and captions, fails for normal text. Type your colours in this checker to see the exact ratio.</p>
+    </section>
+
   </div></main>
   <footer class="layer credit"><div class="inner">
     <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/contrast">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>

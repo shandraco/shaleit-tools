@@ -3,8 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Image shrinker – ShaleIT tools</title>
-<meta name="description" content="Make photos smaller so they send and load fast. Everything happens in your browser and nothing is uploaded.">
+<title>Free image shrinker for photos – ShaleIT tools</title>
+<meta name="description" content="Make photos smaller so they load fast and fit in an email. Free, and your photos are never uploaded. Hidden location details are removed.">
+<link rel="canonical" href="https://shaleit.tech/image">
+<meta name="theme-color" content="#c7cbc6">
+<meta property="og:title" content="Free image shrinker for photos – ShaleIT tools">
+<meta property="og:description" content="Make photos smaller so they load fast and fit in an email. Free, and your photos are never uploaded. Hidden location details are removed.">
+<meta property="og:url" content="https://shaleit.tech/image">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShaleIT tools">
+<meta property="og:image" content="https://shaleit.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="shaleit.tech. Free tools that stay in your browser.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free image shrinker for photos – ShaleIT tools">
+<meta name="twitter:description" content="Make photos smaller so they load fast and fit in an email. Free, and your photos are never uploaded. Hidden location details are removed.">
+<meta name="twitter:image" content="https://shaleit.tech/og.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Image shrinker",
+ "url": "https://shaleit.tech/image",
+ "description": "Make photos smaller so they load fast and fit in an email. Free, and your photos are never uploaded. Hidden location details are removed.",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any (runs in a web browser)",
+ "browserRequirements": "Requires a modern web browser with JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "license": "https://opensource.org/licenses/MIT",
+ "sameAs": "https://github.com/shandraco/shaleit-tools/tree/main/public/image",
+ "publisher": {
+  "@type": "Organization",
+  "name": "ShaleIT",
+  "url": "https://shaleit.tech/"
+ },
+ "image": "https://shaleit.tech/og.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "ShaleIT tools",
+   "item": "https://shaleit.tech/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Image shrinker",
+   "item": "https://shaleit.tech/image"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What size should website images be?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "As a rule of thumb, make full-width images no more than about 1600 pixels on the longest side, and images inside text around 800 to 1200 pixels. Aim for a file well under 200 KB where the picture allows. The For a website choice here uses 1600 pixels and WebP."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I use WebP or JPEG?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Use WebP for websites, because it usually makes a smaller file than JPEG at similar quality and current browsers all open it. Use JPEG for email and anything you send to other people, because it opens almost everywhere. This tool offers both, plus PNG, and lets you change quality."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does shrinking a photo remove its location?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Usually, yes. Phone photos often carry hidden details such as where and with what camera they were taken. Shrinking a photo here saves a new copy without them. If a photo is already so small that the tool keeps your original, it tells you, and that original still has its details."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are my photos uploaded anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The photos are resized and compressed inside your browser, on your own device. Nothing is uploaded, stored or seen by anyone else, and there is no sign-up. The shrunken copies only exist on your device, and the page forgets them when you close it."
+   }
+  }
+ ]
+}
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,6 +171,26 @@
     <div id="list" style="margin-top:1rem"></div>
 
     <p class="priv">Your photos never leave this device. Nothing is uploaded. Shrinking also removes hidden details such as where and with what camera a photo was taken.</p>
+  
+    <section class="answers" aria-labelledby="how-h">
+      <h2 id="how-h">How to use it</h2>
+      <ol>
+        <li>Choose your photos, drop them onto the page, or paste them.</li>
+        <li>Pick what they are for: a website, an email, or keeping them large.</li>
+        <li>Check the new file sizes in the list.</li>
+        <li>Download each photo, or press Download all.</li>
+      </ol>
+      <h2 id="q-h" class="faq-h">Questions people ask</h2>
+      <h3>What size should website images be?</h3>
+      <p>As a rule of thumb, make full-width images no more than about 1600 pixels on the longest side, and images inside text around 800 to 1200 pixels. Aim for a file well under 200 KB where the picture allows. The For a website choice here uses 1600 pixels and WebP.</p>
+      <h3>Should I use WebP or JPEG?</h3>
+      <p>Use WebP for websites, because it usually makes a smaller file than JPEG at similar quality and current browsers all open it. Use JPEG for email and anything you send to other people, because it opens almost everywhere. This tool offers both, plus PNG, and lets you change quality.</p>
+      <h3>Does shrinking a photo remove its location?</h3>
+      <p>Usually, yes. Phone photos often carry hidden details such as where and with what camera they were taken. Shrinking a photo here saves a new copy without them. If a photo is already so small that the tool keeps your original, it tells you, and that original still has its details.</p>
+      <h3>Are my photos uploaded anywhere?</h3>
+      <p>No. The photos are resized and compressed inside your browser, on your own device. Nothing is uploaded, stored or seen by anyone else, and there is no sign-up. The shrunken copies only exist on your device, and the page forgets them when you close it.</p>
+    </section>
+
   </div></main>
   <footer class="layer credit"><div class="inner">
     <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/image">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>

@@ -3,8 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unit converter – ShaleIT tools</title>
-<meta name="description" content="Convert length, weight, temperature, cooking volume, area, speed, data size and time. Free, private, and it works in your browser.">
+<title>Free unit converter, with fractions – ShaleIT tools</title>
+<meta name="description" content="Convert length, weight, temperature, cooking volume and more. Free, accepts fractions and 5&#x27;11&quot;, and works in your browser.">
+<link rel="canonical" href="https://shaleit.tech/units">
+<meta name="theme-color" content="#c7cbc6">
+<meta property="og:title" content="Free unit converter, with fractions – ShaleIT tools">
+<meta property="og:description" content="Convert length, weight, temperature, cooking volume and more. Free, accepts fractions and 5&#x27;11&quot;, and works in your browser.">
+<meta property="og:url" content="https://shaleit.tech/units">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShaleIT tools">
+<meta property="og:image" content="https://shaleit.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="shaleit.tech. Free tools that stay in your browser.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free unit converter, with fractions – ShaleIT tools">
+<meta name="twitter:description" content="Convert length, weight, temperature, cooking volume and more. Free, accepts fractions and 5&#x27;11&quot;, and works in your browser.">
+<meta name="twitter:image" content="https://shaleit.tech/og.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Unit converter",
+ "url": "https://shaleit.tech/units",
+ "description": "Convert length, weight, temperature, cooking volume and more. Free, accepts fractions and 5'11\", and works in your browser.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any (runs in a web browser)",
+ "browserRequirements": "Requires a modern web browser with JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "license": "https://opensource.org/licenses/MIT",
+ "sameAs": "https://github.com/shandraco/shaleit-tools/tree/main/public/units",
+ "publisher": {
+  "@type": "Organization",
+  "name": "ShaleIT",
+  "url": "https://shaleit.tech/"
+ },
+ "image": "https://shaleit.tech/og.png"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "ShaleIT tools",
+   "item": "https://shaleit.tech/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Unit converter",
+   "item": "https://shaleit.tech/units"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How many ml are in a cup?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "One US cup is 236.6 millilitres, and the converter here uses the US cup. Many recipes outside the US use a metric cup of 250 millilitres instead, so check where your recipe comes from. A US cup is also 8 US fluid ounces, or about 16 tablespoons."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many centimetres are in an inch?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "There are exactly 2.54 centimetres in one inch. To convert, multiply inches by 2.54, so 100 inches is 254 centimetres. For height, 5 feet 11 inches is 71 inches, which is 180.3 centimetres. You can type 5'11\" straight into the length converter and it will do the sum."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I convert Fahrenheit to Celsius?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Subtract 32 from the Fahrenheit temperature, then multiply the result by 5 and divide by 9. For example, 350 degrees Fahrenheit minus 32 is 318, and 318 times 5 divided by 9 is about 177 degrees Celsius. The converter does the sum for you."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many kilograms are in a pound?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "One pound is exactly 0.45359237 kilograms, which is about 0.454. To convert pounds to kilograms, multiply by 0.454, so 10 pounds is about 4.54 kilograms. To go the other way, multiply kilograms by 2.2046, so 5 kilograms is about 11 pounds."
+   }
+  }
+ ]
+}
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,6 +183,26 @@
       <h2 id="all-title">All units</h2>
       <ul class="all" id="all" aria-labelledby="all-title"></ul>
     </div>
+
+  
+    <section class="answers" aria-labelledby="how-h">
+      <h2 id="how-h">How to use it</h2>
+      <ol>
+        <li>Choose what you are measuring, such as length, weight or volume.</li>
+        <li>Type the amount. Fractions like 1 1/2 work, and so does 5&#x27;11&quot;.</li>
+        <li>Pick the units to convert from and to.</li>
+        <li>Read the result, or copy it.</li>
+      </ol>
+      <h2 id="q-h" class="faq-h">Questions people ask</h2>
+      <h3>How many ml are in a cup?</h3>
+      <p>One US cup is 236.6 millilitres, and the converter here uses the US cup. Many recipes outside the US use a metric cup of 250 millilitres instead, so check where your recipe comes from. A US cup is also 8 US fluid ounces, or about 16 tablespoons.</p>
+      <h3>How many centimetres are in an inch?</h3>
+      <p>There are exactly 2.54 centimetres in one inch. To convert, multiply inches by 2.54, so 100 inches is 254 centimetres. For height, 5 feet 11 inches is 71 inches, which is 180.3 centimetres. You can type 5&#x27;11&quot; straight into the length converter and it will do the sum.</p>
+      <h3>How do I convert Fahrenheit to Celsius?</h3>
+      <p>Subtract 32 from the Fahrenheit temperature, then multiply the result by 5 and divide by 9. For example, 350 degrees Fahrenheit minus 32 is 318, and 318 times 5 divided by 9 is about 177 degrees Celsius. The converter does the sum for you.</p>
+      <h3>How many kilograms are in a pound?</h3>
+      <p>One pound is exactly 0.45359237 kilograms, which is about 0.454. To convert pounds to kilograms, multiply by 0.454, so 10 pounds is about 4.54 kilograms. To go the other way, multiply kilograms by 2.2046, so 5 kilograms is about 11 pounds.</p>
+    </section>
 
   </div></main>
   <footer class="layer credit"><div class="inner">
