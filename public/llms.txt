@@ -16,7 +16,13 @@
 
 - [Lab Docs](https://github.com/shandraco/lab-docs): Fill in contracts (MSA, statement of work), outreach emails and capability statements from templates, and download PDF or Word. A Next.js and PostgreSQL app you run on your own server, with sign-in for your team. MIT License.
 
+## Developer tools
+
+- [Cockpit for Claude Code](https://github.com/shandraco/shaleit-agent-kit/tree/main/cockpit): A Claude Code mod that shows context and cost above the prompt, lists running subagents, and asks before wide or destructive commands. MIT.
+- [Safety hooks for Claude Code](https://github.com/shandraco/shaleit-agent-kit/tree/main/hooks): Hook scripts that block secrets in a notes folder, warn on large context, and guard Vercel deploys. MIT.
+
 ## Source
 
-- [GitHub repository](https://github.com/shandraco/shaleit-tools): The code for every tool.
+- [GitHub repository](https://github.com/shandraco/shaleit-tools): The code for every browser tool.
+- [Agent kit repository](https://github.com/shandraco/shaleit-agent-kit): Cockpit and the hooks.
 - [MIT License](https://shaleit.tech/LICENSE.txt): Free to use, copy and change.
