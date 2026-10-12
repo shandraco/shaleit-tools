@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image shrinker – ShaleIT tools</title>
+<meta name="description" content="Make photos smaller so they send and load fast. Everything happens in your browser and nothing is uploaded.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;text-align:center;min-height:13rem;padding:1.5rem;margin:0 0 1.5rem;border:3px dashed var(--deep);border-radius:var(--radius);background:var(--paper);cursor:pointer;font-weight:700;font-size:1.5rem}
+.drop small{font-weight:400;font-size:1rem}
+.drop:hover,.drop.over{background:var(--ink-pale);border-color:var(--seam)}
+.sr-only:focus-visible + .drop,.drop:focus-within{outline:3px solid var(--seam);outline-offset:3px}
+.presets{border:0;padding:0;margin:0 0 1rem;display:grid;gap:.75rem}
+.presets legend{font-weight:500;margin-bottom:.5rem;padding:0}
+.card{display:flex;gap:.75rem;align-items:flex-start;margin:0;padding:.9rem 1rem;background:var(--paper);border:2px solid var(--deep);border-radius:var(--radius);cursor:pointer;font-weight:700}
+.card input{margin-top:.2rem;flex:none}
+.card small{display:block;font-weight:400;font-size:.95rem}
+.card:has(input:checked){border-color:var(--seam);box-shadow:inset 0 0 0 2px var(--seam)}
+.card:has(input:focus-visible){outline:3px solid var(--seam);outline-offset:3px}
+.item{display:grid;grid-template-columns:5rem 1fr;gap:.25rem 1rem;align-items:center;padding:1rem;margin:0 0 .75rem;background:var(--paper);border-radius:var(--radius)}
+.item img{width:5rem;height:5rem;object-fit:cover;border-radius:var(--radius);background:var(--silt)}
+.item .name{font-weight:700;overflow-wrap:anywhere}
+.item .info{margin:0}
+.item .act{grid-column:1/-1;margin-top:.5rem}
+.item.bad .info{color:var(--danger)}
+.item .btn{min-height:3rem}
+.priv{font-size:1rem;margin:1rem 0 0}
+.grid2{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>Image shrinker</h1>
+    <p class="lede">Make photos much smaller so they email and load fast, right here on your device.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+    <input class="sr-only" type="file" id="file" accept="image/*" multiple>
+    <label class="drop" id="drop" for="file">
+      Choose photos
+      <small>Or drop them here, or paste with Ctrl+V (Cmd+V on a Mac)</small>
+    </label>
+
+    <fieldset class="presets">
+      <legend>What are they for?</legend>
+      <label class="card"><input type="radio" name="preset" value="web" checked><span>For a website<small>Medium size, sharp. Saved as WebP.</small></span></label>
+      <label class="card"><input type="radio" name="preset" value="email"><span>For email<small>Smaller, opens everywhere. Saved as JPEG.</small></span></label>
+      <label class="card"><input type="radio" name="preset" value="large"><span>Keep it large<small>Same dimensions, just lighter. Saved as WebP.</small></span></label>
+    </fieldset>
+
+    <details class="more">
+      <summary>More choices</summary>
+      <div class="grid2" style="margin-top:1rem">
+        <div class="field"><label for="maxw">Longest side in pixels</label><span class="hint">Leave empty to keep the original size.</span><input type="number" id="maxw" min="16" max="20000" inputmode="numeric"></div>
+        <div class="field"><label for="fmt">File type</label><select id="fmt"><option value="image/webp">WebP</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option></select></div>
+      </div>
+      <div class="field"><label for="q">Quality: <span id="qv">80</span>%</label><span class="hint">Lower is smaller. PNG ignores this.</span><input type="range" id="q" min="30" max="100" value="80"></div>
+    </details>
+
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <div class="row" id="bulk" hidden><button class="btn" id="dlall" type="button">Download all</button><button class="btn quiet" id="clear" type="button">Start over</button></div>
+    <div id="list" style="margin-top:1rem"></div>
+
+    <p class="priv">Your photos never leave this device. Nothing is uploaded. Shrinking also removes hidden details such as where and with what camera a photo was taken.</p>
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/image">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Inspired by Squoosh from Google Chrome Labs (Apache-2.0). No Squoosh code is used. <a href="https://github.com/GoogleChromeLabs/squoosh">See Squoosh on GitHub</a>.</p>
+  </div></footer>
+  <script src="/image/app.js" defer></script>
+</body>
+</html>

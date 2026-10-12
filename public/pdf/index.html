@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF merger – ShaleIT tools</title>
+<meta name="description" content="Join several PDFs into one, or pull out just some pages. Free, private, and it works in your browser. Your files are never uploaded.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .drop { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.5rem; min-height: 11rem; padding: 1.5rem 1rem; margin-bottom: 1.5rem; border: 3px dashed var(--deep); border-radius: var(--radius); background: var(--paper); cursor: pointer; }
+  .drop.over { background: var(--fissile); border-color: var(--seam); }
+  .drop:focus-within { outline: 3px solid var(--seam); outline-offset: 3px; }
+  .drop .big { font-size: 1.4rem; font-weight: 700; }
+  .drop .btn { pointer-events: none; }
+  .files { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+  .files li { border: 2px solid var(--deep); border-radius: var(--radius); background: var(--paper); padding: 0.75rem; margin: 0 0 0.75rem; }
+  .files li.bad { border-color: var(--danger); }
+  .files li.dragging { opacity: 0.5; }
+  .fname { font-weight: 700; overflow-wrap: anywhere; margin: 0; }
+  .fmeta { margin: 0.1rem 0 0.5rem; font-size: 0.95rem; }
+  .fbtns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .fbtns .btn { min-height: 2.75rem; padding: 0.4rem 0.9rem; width: auto; }
+  .ferr { color: var(--danger); font-weight: 500; margin: 0 0 0.5rem; }
+  .range { margin-top: 0.5rem; }
+  .range input[type=text] { max-width: 16rem; }
+  .undo { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; margin: 0 0 1rem; border-left: 4px solid var(--seam); background: var(--paper); }
+  .undo[hidden] { display: none; }
+  .undo .btn { min-height: 2.75rem; width: auto; }
+  .go { margin-top: 0.5rem; }
+  @media (max-width: 40rem) { .fbtns .btn { flex: 1 1 auto; } }
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>PDF merger</h1>
+    <p class="lede">Join PDFs into one file, or pull out just the pages you need. Your files stay on your device and are never uploaded.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+
+    <label class="drop" id="drop" for="pick">
+      <span class="big">Choose PDFs</span>
+      <span class="btn">Browse files</span>
+      <span class="hint" style="margin:0">or drop them here. You can add more later.</span>
+      <input class="sr-only" type="file" id="pick" multiple accept="application/pdf,.pdf">
+    </label>
+
+    <div class="undo" id="undo" hidden>
+      <span id="undo-msg"></span>
+      <button type="button" class="btn quiet" id="undo-btn">Undo</button>
+    </div>
+
+    <ol class="files" id="files" aria-label="Files in merge order"></ol>
+    <p class="hint" id="order-hint" hidden>Files are joined from top to bottom. Use Move up and Move down to change the order.</p>
+
+    <div class="field">
+      <label for="outname">Name of the new file</label>
+      <input type="text" id="outname" value="merged.pdf" autocomplete="off" autocapitalize="off" spellcheck="false">
+    </div>
+
+    <div class="row go">
+      <button type="button" class="btn" id="go" disabled aria-describedby="go-hint">Merge and download</button>
+    </div>
+    <p class="hint" id="go-hint">Add at least two PDFs to get started.</p>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/pdf">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Uses <a href="https://github.com/Hopding/pdf-lib">pdf-lib</a> by Andrew Dillon (MIT). Nothing you add leaves your device.</p>
+  </div></footer>
+  <script src="/vendor/pdf-lib.min.js" defer></script>
+  <script src="/pdf/app.js" defer></script>
+</body>
+</html>

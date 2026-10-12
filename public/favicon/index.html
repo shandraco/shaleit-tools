@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Favicon maker – ShaleIT tools</title>
+<meta name="description" content="Make a favicon pack for your website from a letter or an image. Free, private, and it works in your browser.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  fieldset { border: 0; margin: 0 0 1.5rem; padding: 0; min-width: 0; }
+  legend { font-weight: 500; padding: 0; margin: 0 0 0.5rem; }
+  .kinds { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.5rem; }
+  .kinds label { margin: 0; position: relative; }
+  .kinds input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .kinds span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 3.25rem; padding: 0.5rem 0.75rem; border: 2px solid var(--deep); border-radius: var(--radius); background: var(--paper); font-weight: 500; }
+  .kinds input:checked + span { background: var(--bedrock); color: var(--ink-pale); border-color: var(--bedrock); }
+  .kinds input:focus-visible + span { outline: 3px solid var(--seam); outline-offset: 3px; }
+  .pane[hidden] { display: none; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .drop { border: 2px dashed var(--deep); border-radius: var(--radius); padding: 1.25rem; text-align: center; margin-bottom: 1.5rem; }
+  .drop.over { background: var(--paper); border-style: solid; }
+  .drop p { margin: 0.5rem 0 0; }
+  .file input:focus-visible + label { outline: 3px solid var(--seam); outline-offset: 3px; }
+  .file label { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .colours { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1rem; }
+  .colours .field { margin: 0; }
+  .sizes { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.5rem; margin-bottom: 1.25rem; }
+  .sizes figure { margin: 0; text-align: center; }
+  .sizes figcaption { font-size: 0.9rem; margin-top: 0.4rem; }
+  .sizes canvas { display: block; margin: 0 auto; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+  .tab { display: flex; align-items: center; gap: 0.5rem; width: 13rem; max-width: 100%; padding: 0.55rem 0.8rem; border-radius: 10px 10px 0 0; font: 400 13px/1.2 system-ui, sans-serif; border: 1px solid #bbb; border-bottom: 0; }
+  .tab img { width: 16px; height: 16px; flex: none; }
+  .tab span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tab.light { background: #fff; color: #222; }
+  .tab.dark { background: #35363a; color: #eee; border-color: #35363a; }
+  .notes { margin: 0.75rem 0 0; padding: 0; list-style: none; }
+  .notes li { margin: 0 0 0.5rem; padding-left: 0.9rem; border-left: 4px solid var(--seam); }
+  .notes li.bad { border-left-color: var(--danger); color: var(--danger); font-weight: 500; }
+  textarea.code { width: 100%; min-height: 9.5rem; font: 0.85rem/1.4 ui-monospace, Menlo, Consolas, monospace; }
+  .box { margin-top: 2rem; }
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>Favicon maker</h1>
+    <p class="lede">Make the small icon that shows in browser tabs. Start from a letter or a picture, then download a pack that is ready to use. Nothing is uploaded. Everything happens on your device.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+
+    <fieldset>
+      <legend>How do you want to start?</legend>
+      <div class="kinds">
+        <label><input type="radio" name="mode" value="letter" checked><span>From a letter</span></label>
+        <label><input type="radio" name="mode" value="image"><span>From an image</span></label>
+      </div>
+    </fieldset>
+
+    <div class="pane" id="pane-letter">
+      <div class="field">
+        <label for="letter">One or two letters</label>
+        <input type="text" id="letter" maxlength="2" value="S" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="colours">
+        <div class="field">
+          <label for="bg">Background colour</label>
+          <input type="color" id="bg" value="#2b3a42">
+        </div>
+        <div class="field">
+          <label for="fg">Letter colour</label>
+          <input type="color" id="fg" value="#ffffff">
+        </div>
+        <div class="field">
+          <label for="shape">Shape</label>
+          <select id="shape">
+            <option value="rounded" selected>Rounded corners</option>
+            <option value="square">Square corners</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane" id="pane-image" hidden>
+      <div class="drop" id="drop">
+        <div class="file">
+          <input type="file" id="file" class="sr" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+          <label for="file" class="btn">Choose an image</label>
+        </div>
+        <p id="file-name">Or drop a PNG, JPG, SVG or WebP here.</p>
+      </div>
+      <fieldset>
+        <legend>How should it fit the square?</legend>
+        <div class="kinds">
+          <label><input type="radio" name="fit" value="fit" checked><span>Fit whole image</span></label>
+          <label><input type="radio" name="fit" value="fill"><span>Fill the square</span></label>
+        </div>
+        <span class="hint">Fill the square trims the edges so the picture covers everything.</span>
+      </fieldset>
+      <div class="field" id="fit-bg-field">
+        <label for="fitbg">Colour behind the image</label>
+        <input type="color" id="fitbg" value="#ffffff">
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="sizes" aria-label="Preview at real sizes">
+        <figure><canvas id="c16" width="16" height="16" style="width:16px;height:16px" role="img" aria-label="16 pixel preview"></canvas><figcaption>16 px</figcaption></figure>
+        <figure><canvas id="c32" width="32" height="32" style="width:32px;height:32px" role="img" aria-label="32 pixel preview"></canvas><figcaption>32 px</figcaption></figure>
+        <figure><canvas id="c180" width="180" height="180" style="width:180px;height:180px;max-width:100%" role="img" aria-label="180 pixel preview"></canvas><figcaption>180 px (Apple)</figcaption></figure>
+      </div>
+      <div class="tabs" aria-label="Browser tab preview">
+        <div class="tab light"><img id="t1" alt=""><span>Your page title</span></div>
+        <div class="tab dark"><img id="t2" alt=""><span>Your page title</span></div>
+      </div>
+      <ul class="notes" id="notes" aria-live="polite"></ul>
+    </div>
+
+    <div class="field">
+      <label for="sitename">Site name (optional)</label>
+      <span class="hint" id="sn-hint">Used in the web manifest file. You can leave it empty.</span>
+      <input type="text" id="sitename" autocomplete="off" aria-describedby="sn-hint">
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn" id="dl">Download icon pack (zip)</button>
+    </div>
+    <p class="status" id="dl-status" aria-live="polite"></p>
+    <p class="hint">The zip has your icon in every size a website needs, plus a short note on where to put the files.</p>
+
+    <div class="box">
+      <div class="field">
+        <label for="snippet">Paste this in the head of your pages</label>
+        <span class="hint">Upload the files to the top folder of your site first.</span>
+        <textarea id="snippet" class="code" readonly></textarea>
+      </div>
+      <div class="row">
+        <button type="button" class="btn quiet" id="copy">Copy code</button>
+      </div>
+      <p class="status" id="copy-status" aria-live="polite"></p>
+    </div>
+
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/favicon">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Uses fflate by Arjun Barrett (MIT) to make the zip file. <a href="https://github.com/101arrowz/fflate">fflate on GitHub</a>. Nothing you choose leaves your device.</p>
+  </div></footer>
+  <script src="/vendor/fflate.min.js" defer></script>
+  <script src="/favicon/app.js" defer></script>
+</body>
+</html>

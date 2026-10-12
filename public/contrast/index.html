@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contrast checker – ShaleIT tools</title>
+<meta name="description" content="Check that text is easy to read on its background colour. Free, and nothing leaves your device.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.pair { display: grid; gap: 0 1.5rem; grid-template-columns: 1fr 1fr; }
+.pick { display: flex; gap: 0.6rem; align-items: stretch; }
+.pick input[type="text"] { flex: 1; min-width: 0; }
+.pick input[type="color"] { flex: none; }
+.preview { border-radius: var(--radius); padding: 1.5rem 1.25rem; margin: 0 0 1.5rem; border: 2px solid var(--deep); }
+.preview .big { margin: 0 0 0.75rem; font-size: clamp(1.75rem, 6vw, 2.5rem); font-weight: 700; line-height: 1.15; }
+.preview .small { margin: 0; font-size: 1rem; }
+.verdict { margin: 0; font-size: clamp(1.9rem, 6vw, 2.75rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.ratio { margin: 0.4rem 0 1rem; font-size: 1.25rem; }
+.checks { list-style: none; margin: 0; padding: 0; }
+.checks li { display: flex; gap: 0.75rem; padding: 0.6rem 0; border-top: 1px solid var(--silt); }
+.checks .mark { flex: none; width: 1.6rem; height: 1.6rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; }
+.checks .pass .mark { background: var(--ok); }
+.checks .fail .mark { background: var(--danger); }
+.checks b { font-weight: 700; }
+.actions { margin: 0 0 1.5rem; }
+.fixbox { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.fixbox .sw { width: 4rem; height: 4rem; border-radius: var(--radius); border: 2px solid var(--deep); flex: none; }
+.fixbox p { margin: 0; flex: 1 1 12rem; }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>Contrast checker</h1>
+    <p class="lede">Pick a text colour and a background colour, and we will tell you if people can read it.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+    <div class="pair">
+      <div class="field">
+        <label for="fg-text">Text colour</label>
+        <div class="pick">
+          <input type="color" id="fg-pick" aria-label="Pick the text colour" value="#1d2220">
+          <input type="text" id="fg-text" autocomplete="off" spellcheck="false" aria-describedby="fg-msg">
+        </div>
+        <p class="status err" id="fg-msg" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="bg-text">Background colour</label>
+        <div class="pick">
+          <input type="color" id="bg-pick" aria-label="Pick the background colour" value="#c7cbc6">
+          <input type="text" id="bg-text" autocomplete="off" spellcheck="false" aria-describedby="bg-msg">
+        </div>
+        <p class="status err" id="bg-msg" role="alert"></p>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:-0.5rem">You can type a code like #1d2220 or #fff, a name like navy, or rgb(30, 34, 32).</p>
+
+    <div class="preview" id="preview" aria-label="Preview of your colours">
+      <p class="big">The quick brown fox jumps over the lazy dog.</p>
+      <p class="small">This is smaller text, the kind you read in a paragraph. Can you read it easily?</p>
+    </div>
+
+    <section class="result" aria-live="polite" aria-labelledby="verdict">
+      <p class="verdict" id="verdict"></p>
+      <p class="ratio" id="ratio"></p>
+      <ul class="checks" id="checks"></ul>
+    </section>
+
+    <div class="actions">
+      <div class="row">
+        <button type="button" class="btn" id="fix" hidden>Fix it for me</button>
+        <button type="button" class="btn quiet" id="swap">Swap colours</button>
+        <button type="button" class="btn quiet" id="undo" hidden>Undo</button>
+      </div>
+      <p class="status" id="note" role="status"></p>
+    </div>
+
+    <section class="result" id="fixbox" hidden aria-live="polite">
+      <div class="fixbox">
+        <span class="sw" id="fix-sw"></span>
+        <p id="fix-text"></p>
+        <button type="button" class="btn" id="apply">Use this colour</button>
+      </div>
+    </section>
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/contrast">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Uses the contrast formula from the <a href="https://www.w3.org/TR/WCAG22/#dfn-contrast-ratio">W3C Web Content Accessibility Guidelines (WCAG) 2.2</a>.</p>
+  </div></footer>
+  <script src="/contrast/app.js" defer></script>
+</body>
+</html>

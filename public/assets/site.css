@@ -1,0 +1,171 @@
+/* shaleit.tech: one stylesheet for the landing page and every tool.
+   Shale is layered rock, so pages are stacks of horizontal strata that darken with depth.
+   The single accent is the pyrite seam (--seam). */
+:root {
+  --fissile: #c7cbc6;   /* top layer, page ground */
+  --silt:    #9aa09b;
+  --mudrock: #6c736e;
+  --deep:    #3e4541;
+  --bedrock: #232825;
+  --seam:    #c49a2c;
+  --ink:     #1d2220;
+  --ink-pale:#eef0ec;
+  --paper:   #f3f4f1;   /* inputs and result wells */
+  --danger:  #8a2d1f;
+  --ok:      #2f5a32;
+  --radius:  6px;
+}
+* { box-sizing: border-box; }
+html { background: var(--bedrock); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--fissile);
+}
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--seam); outline-offset: 3px; }
+.layer { padding: 0 clamp(16px, 6vw, 88px); }
+.inner { max-width: 68rem; }
+.seam { height: 4px; background: var(--seam); }
+
+/* ---------- Landing ---------- */
+.top { padding-top: clamp(48px, 10vh, 120px); padding-bottom: clamp(32px, 6vh, 64px); }
+.wordmark {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(3.25rem, 13vw, 10rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+.wordmark span { display: block; }
+.wordmark .tld { color: var(--mudrock); }
+.lede { margin: 1.5rem 0 0; max-width: 34rem; font-size: clamp(1.125rem, 2.2vw, 1.375rem); }
+
+.group-head { padding-top: 2.5rem; padding-bottom: 0.75rem; }
+.group-head h2 { margin: 0; font-size: 1.25rem; font-weight: 500; }
+.group-head p { margin: 0.25rem 0 0; max-width: 40rem; font-size: 1rem; }
+
+.tool { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.tool .inner {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) 1fr;
+  gap: 0.4rem 2.5rem;
+  align-items: baseline;
+}
+.tool h3 { margin: 0; font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.tool h3 a { text-decoration: none; }
+.tool h3 a:hover { text-decoration: underline; }
+.tool p { margin: 0; max-width: 36rem; }
+.tool .where { grid-column: 2; font-size: 0.95rem; }
+.licence {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.open  { background: var(--fissile); }
+.open .tool { border-top: 1px solid var(--silt); }
+.private-head { background: var(--silt); }
+.s1 { background: var(--silt); }
+.s2 { background: var(--mudrock); color: var(--ink-pale); }
+.s3 { background: var(--deep); color: var(--ink-pale); }
+
+.base {
+  flex: 1;
+  background: var(--bedrock);
+  color: var(--ink-pale);
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+  font-size: 1rem;
+}
+.base p { margin: 0 0 0.75rem; max-width: 42rem; }
+
+/* ---------- Tool pages ---------- */
+.tool-top { padding-top: 1.25rem; padding-bottom: 2rem; }
+.home { font-weight: 700; letter-spacing: -0.02em; text-decoration: none; }
+.home:hover { text-decoration: underline; }
+.tool-top h1 {
+  margin: 1.75rem 0 0;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+.tool-top .lede { margin-top: 0.75rem; }
+
+.work { background: var(--silt); padding-top: 2rem; padding-bottom: 2.5rem; flex: 1; }
+.work .inner { max-width: 44rem; }
+
+label, .label { display: block; font-weight: 500; margin: 0 0 0.4rem; }
+.hint { display: block; font-size: 0.95rem; margin: -0.2rem 0 0.5rem; }
+.field { margin-bottom: 1.5rem; }
+input[type="text"], input[type="url"], input[type="number"], textarea, select {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--deep);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem;
+  min-height: 3.25rem;
+}
+textarea { min-height: 7rem; resize: vertical; }
+input[type="color"] {
+  width: 3.25rem; height: 3.25rem; padding: 0.2rem;
+  border: 2px solid var(--deep); border-radius: var(--radius); background: var(--paper);
+}
+input[type="range"] { width: 100%; accent-color: var(--deep); min-height: 2.75rem; }
+input[type="checkbox"], input[type="radio"] { width: 1.4rem; height: 1.4rem; accent-color: var(--deep); vertical-align: -0.25rem; margin-right: 0.5rem; }
+.check { display: flex; align-items: center; min-height: 2.75rem; font-weight: 400; margin: 0; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  font: inherit; font-weight: 700;
+  min-height: 3.25rem; padding: 0.7rem 1.5rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--bedrock);
+  background: var(--bedrock); color: var(--ink-pale);
+  cursor: pointer; text-decoration: none;
+}
+.btn:hover { background: var(--deep); border-color: var(--deep); }
+.btn.quiet { background: transparent; color: var(--ink); }
+.btn.quiet:hover { background: var(--fissile); }
+.btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+.row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+
+.result {
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 0 0 1.5rem;
+}
+.status { min-height: 1.5em; margin: 0.75rem 0 0; font-weight: 500; }
+.status.err { color: var(--danger); }
+.status.ok { color: var(--ok); }
+
+details.more { margin-top: 1.5rem; }
+details.more summary { cursor: pointer; font-weight: 500; min-height: 2.75rem; display: flex; align-items: center; }
+
+.credit { background: var(--deep); color: var(--ink-pale); padding-top: 1.5rem; padding-bottom: 1.5rem; font-size: 0.95rem; }
+.credit p { margin: 0 0 0.4rem; max-width: 44rem; }
+
+@media (max-width: 640px) {
+  .tool .inner { grid-template-columns: 1fr; }
+  .tool .where { grid-column: 1; }
+  .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Text links in footers and the home link: inline padding grows the tap target to 44px without moving the text */
+.home, .base a, .credit a, .group-head a { padding: 0.7rem 0; }

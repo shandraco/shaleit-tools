@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR code maker – ShaleIT tools</title>
+<meta name="description" content="Make a QR code for a web address, Wi-Fi network, phone number or text. Free, private, and it works in your browser.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  fieldset { border: 0; margin: 0 0 1.5rem; padding: 0; min-width: 0; }
+  legend { font-weight: 500; padding: 0; margin: 0 0 0.5rem; }
+  .kinds { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.5rem; }
+  .kinds label { margin: 0; position: relative; }
+  .kinds input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .kinds span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 3.25rem; padding: 0.5rem 0.75rem; border: 2px solid var(--deep); border-radius: var(--radius); background: var(--paper); font-weight: 500; }
+  .kinds input:checked + span { background: var(--bedrock); color: var(--ink-pale); border-color: var(--bedrock); }
+  .kinds input:focus-visible + span { outline: 3px solid var(--seam); outline-offset: 3px; }
+  .pane[hidden] { display: none; }
+  .qr-box { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 14rem; text-align: center; }
+  .qr-box svg { display: block; width: 100%; max-width: 20rem; height: auto; border: 1px solid var(--silt); }
+  .qr-box svg[hidden] { display: none; }
+  .empty { margin: 0; max-width: 24rem; }
+  .notes { margin: 0.75rem 0 0; padding: 0; list-style: none; }
+  .notes li { margin: 0 0 0.5rem; padding-left: 0.9rem; border-left: 4px solid var(--seam); }
+  .notes li.bad { border-left-color: var(--danger); color: var(--danger); font-weight: 500; }
+  .colours { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .colours .field { margin: 0; }
+  .btn.again { margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>QR code maker</h1>
+    <p class="lede">Type a web address, Wi-Fi password or phone number and get a QR code you can download and print.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+
+    <fieldset>
+      <legend>What should the code open?</legend>
+      <div class="kinds">
+        <label><input type="radio" name="kind" value="url" checked><span>Web address</span></label>
+        <label><input type="radio" name="kind" value="wifi"><span>Wi-Fi network</span></label>
+        <label><input type="radio" name="kind" value="tel"><span>Phone number</span></label>
+        <label><input type="radio" name="kind" value="text"><span>Plain text</span></label>
+      </div>
+    </fieldset>
+
+    <div class="pane" id="pane-url">
+      <div class="field">
+        <label for="url">Web address</label>
+        <span class="hint" id="url-hint">For example: shaleit.tech</span>
+        <input type="text" id="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="url-hint">
+      </div>
+    </div>
+
+    <div class="pane" id="pane-wifi" hidden>
+      <div class="field">
+        <label for="ssid">Wi-Fi name</label>
+        <input type="text" id="ssid" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="wifipass">Wi-Fi password</label>
+        <input type="text" id="wifipass" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="security">Security type</label>
+        <span class="hint" id="sec-hint">Most home networks use WPA. It is usually printed on the router.</span>
+        <select id="security" aria-describedby="sec-hint">
+          <option value="WPA" selected>WPA or WPA2</option>
+          <option value="WEP">WEP</option>
+          <option value="nopass">None (no password)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="check"><input type="checkbox" id="hidden">This network is hidden</label>
+      </div>
+    </div>
+
+    <div class="pane" id="pane-tel" hidden>
+      <div class="field">
+        <label for="tel">Phone number</label>
+        <span class="hint" id="tel-hint">Include the country code if people may scan it from abroad, like +1 555 123 4567.</span>
+        <input type="text" id="tel" inputmode="tel" autocomplete="off" aria-describedby="tel-hint">
+      </div>
+    </div>
+
+    <div class="pane" id="pane-text" hidden>
+      <div class="field">
+        <label for="text">Text</label>
+        <textarea id="text"></textarea>
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="qr-box" id="qr-box">
+        <p class="empty" id="empty">Your QR code will show up here. Start typing above.</p>
+        <svg id="qr" role="img" aria-label="" hidden></svg>
+      </div>
+      <ul class="notes" id="notes" aria-live="polite"></ul>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn" id="dl-png" disabled>Download PNG</button>
+      <button type="button" class="btn quiet" id="dl-svg" disabled>Download SVG</button>
+    </div>
+    <p class="status" id="dl-status" aria-live="polite"></p>
+    <p class="hint">PNG works for most things. SVG stays sharp at any size, which suits a print shop.</p>
+
+    <details class="more">
+      <summary>More options</summary>
+      <div class="field">
+        <label for="size">Size of the PNG file</label>
+        <select id="size">
+          <option value="512">Small (512 pixels)</option>
+          <option value="1024" selected>Medium (1024 pixels)</option>
+          <option value="2048">Large (2048 pixels)</option>
+          <option value="4096">Extra large (4096 pixels)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="check"><input type="checkbox" id="hi">Make it easier to scan when printed small</label>
+        <span class="hint">This adds backup detail so scuffs and creases matter less. The code gets busier.</span>
+      </div>
+      <div class="colours">
+        <div class="field">
+          <label for="dark">Code colour</label>
+          <input type="color" id="dark" value="#000000">
+        </div>
+        <div class="field">
+          <label for="light">Background colour</label>
+          <input type="color" id="light" value="#ffffff">
+        </div>
+        <div class="field">
+          <button type="button" class="btn quiet" id="reset-colours">Back to black and white</button>
+        </div>
+      </div>
+    </details>
+
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/qr">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Codes are drawn with qrcode-generator by Kazuhiko Arase (MIT License). Nothing you type leaves your device. QR Code is a registered trademark of DENSO WAVE.</p>
+  </div></footer>
+  <script src="/vendor/qrcode.js" defer></script>
+  <script src="/qr/app.js" defer></script>
+</body>
+</html>

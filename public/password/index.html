@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Password maker – ShaleIT tools</title>
+<meta name="description" content="Make a strong password or an easy-to-remember passphrase. Everything happens in your browser and nothing is sent anywhere.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .pw {
+    font-size: clamp(1.75rem, 6.5vw, 2.75rem);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    word-break: break-all;
+    margin: 0 0 1rem;
+    min-height: 1.25em;
+    user-select: all;
+  }
+  .pw .d { color: #1f4f8a; }
+  .pw .s { color: var(--danger); }
+  .strength { margin: 0; font-weight: 500; }
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0 0 1.5rem; border: 0; padding: 0; }
+  .modes legend { font-weight: 500; margin-bottom: 0.4rem; padding: 0; }
+  .mode { display: flex; align-items: center; min-height: 3.25rem; padding: 0.5rem 0.9rem; margin: 0; background: var(--paper); border: 2px solid var(--deep); border-radius: var(--radius); cursor: pointer; font-weight: 500; }
+  .mode:has(input:checked) { background: var(--bedrock); color: var(--ink-pale); }
+  .mode input { accent-color: var(--seam); }
+  .actions { margin-bottom: 0.25rem; }
+  .actions .primary { flex: 1 1 14rem; font-size: 1.25rem; min-height: 3.75rem; }
+  .opts { margin-top: 1.5rem; }
+  .opts[hidden] { display: none; }
+  .opts input[type="number"] { max-width: 8rem; }
+  @media (max-width: 640px) { .modes { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>Password maker</h1>
+    <p class="lede">Get a strong password in one tap, then copy it. Nothing leaves your device.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+    <div class="result">
+      <p class="pw" id="pw" aria-label="Your new password">Making your password…</p>
+      <p class="strength" id="strength"></p>
+    </div>
+
+    <div class="row actions">
+      <button class="btn primary" type="button" id="copy" disabled>Copy password</button>
+      <button class="btn quiet" type="button" id="again" disabled>Make another</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <fieldset class="modes">
+      <legend>What kind of password?</legend>
+      <label class="mode"><input type="radio" name="mode" value="words" checked>Easy to remember</label>
+      <label class="mode"><input type="radio" name="mode" value="chars">Random characters</label>
+    </fieldset>
+
+    <div class="opts" id="opts-words">
+      <div class="field">
+        <label for="wcount">Number of words</label>
+        <input type="number" id="wcount" min="3" max="10" value="5" inputmode="numeric">
+      </div>
+      <label class="check"><input type="checkbox" id="wcap">Start each word with a capital letter</label>
+      <label class="check"><input type="checkbox" id="wnum">Add a number at the end</label>
+    </div>
+
+    <div class="opts" id="opts-chars" hidden>
+      <div class="field">
+        <label for="clen">Length</label>
+        <span class="hint">Longer is stronger. 20 is a good choice.</span>
+        <input type="number" id="clen" min="8" max="64" value="20" inputmode="numeric">
+      </div>
+      <label class="check"><input type="checkbox" id="ccap" checked>Capital letters</label>
+      <label class="check"><input type="checkbox" id="cnum" checked>Numbers</label>
+      <label class="check"><input type="checkbox" id="csym" checked>Symbols</label>
+      <label class="check"><input type="checkbox" id="cavoid" checked>Avoid look-alike characters</label>
+      <span class="hint">Skips characters that are easy to mix up, like 0 and O, or 1, l and I.</span>
+    </div>
+
+    <details class="more">
+      <summary>How strong is it, exactly?</summary>
+      <p id="bits">Strength is measured in bits. Each extra bit doubles the number of guesses an attacker would need.</p>
+    </details>
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/password">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Word list: the <a href="https://www.eff.org/dice">EFF Large Wordlist</a> by the Electronic Frontier Foundation, licensed <a href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>.</p>
+  </div></footer>
+  <script src="/password/app.js" defer></script>
+</body>
+</html>

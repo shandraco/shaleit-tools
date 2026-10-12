@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit converter – ShaleIT tools</title>
+<meta name="description" content="Convert length, weight, temperature, cooking volume, area, speed, data size and time. Free, private, and it works in your browser.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  fieldset { border: 0; margin: 0 0 1.5rem; padding: 0; min-width: 0; }
+  legend { font-weight: 500; padding: 0; margin: 0 0 0.5rem; }
+  .kinds { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 0.5rem; }
+  .kinds label { margin: 0; position: relative; }
+  .kinds input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .kinds span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 3.25rem; padding: 0.5rem 0.75rem; border: 2px solid var(--deep); border-radius: var(--radius); background: var(--paper); font-weight: 500; }
+  .kinds input:checked + span { background: var(--bedrock); color: var(--ink-pale); border-color: var(--bedrock); }
+  .kinds input:focus-visible + span { outline: 3px solid var(--seam); outline-offset: 3px; }
+  .conv { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: end; margin-bottom: 1rem; }
+  .conv .field { margin: 0; min-width: 0; }
+  .conv select { margin-top: 0.5rem; }
+  .conv input[type="text"] { font-size: 1.5rem; font-weight: 700; }
+  .out { display: flex; align-items: center; min-height: 3.25rem; padding: 0.5rem 0.9rem; border: 2px solid var(--deep); border-radius: var(--radius); background: var(--paper); font-size: 1.5rem; font-weight: 700; overflow-wrap: anywhere; }
+  .out.stale { opacity: 0.45; }
+  .swap { align-self: end; }
+  .notes { margin: 0.75rem 0 0; padding: 0; list-style: none; }
+  .notes li { margin: 0 0 0.5rem; padding-left: 0.9rem; border-left: 4px solid var(--seam); }
+  .notes li.bad { border-left-color: var(--danger); color: var(--danger); font-weight: 500; }
+  .all { margin: 0.5rem 0 0; padding: 0; list-style: none; }
+  .all li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-top: 1px solid var(--silt); }
+  .all li:first-child { border-top: 0; }
+  .all .v { font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+  .all li.to { font-weight: 700; }
+  .result h2 { font-size: 1.15rem; margin: 0; }
+  @media (max-width: 640px) {
+    .conv { grid-template-columns: 1fr; }
+    .swap { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <header class="layer tool-top"><div class="inner">
+    <a class="home" href="/">shaleit.tech</a>
+    <h1>Unit converter</h1>
+    <p class="lede">Pick what you are measuring, type a number, and see the answer right away.</p>
+  </div></header>
+  <div class="seam" aria-hidden="true"></div>
+  <main class="layer work"><div class="inner">
+
+    <fieldset>
+      <legend>What are you measuring?</legend>
+      <div class="kinds" id="kinds"></div>
+    </fieldset>
+
+    <div class="conv">
+      <div class="field">
+        <label for="num">Amount</label>
+        <input type="text" id="num" value="1" inputmode="text" autocomplete="off" spellcheck="false" aria-describedby="num-hint">
+        <select id="from" aria-label="Convert from"></select>
+      </div>
+      <button type="button" class="btn quiet swap" id="swap">Swap</button>
+      <div class="field">
+        <span class="label" id="res-label">Result</span>
+        <div class="out" id="out" role="status" aria-labelledby="res-label"></div>
+        <select id="to" aria-label="Convert to"></select>
+      </div>
+    </div>
+    <span class="hint" id="num-hint">You can type 12, 1,234.5, 1/2 or 1 1/2. For length you can also type 5'11" or 5 ft 11 in.</span>
+    <ul class="notes" id="notes" aria-live="polite"></ul>
+
+    <div class="row">
+      <button type="button" class="btn" id="copy">Copy result</button>
+    </div>
+    <p class="status" id="copy-status" aria-live="polite"></p>
+
+    <p class="hint" id="cat-hint" hidden></p>
+
+    <div class="result">
+      <h2 id="all-title">All units</h2>
+      <ul class="all" id="all" aria-labelledby="all-title"></ul>
+    </div>
+
+  </div></main>
+  <footer class="layer credit"><div class="inner">
+    <p><span class="licence">MIT License</span> This tool is open source. <a href="https://github.com/shandraco/shaleit-tools/tree/main/public/units">View the code</a> or <a href="/LICENSE.txt">read the license</a>.</p>
+    <p>Conversion factors from <a href="https://www.nist.gov/pml/special-publication-811">NIST Special Publication 811</a> (public domain). Nothing you type leaves your device.</p>
+  </div></footer>
+  <script src="/units/app.js" defer></script>
+</body>
+</html>
