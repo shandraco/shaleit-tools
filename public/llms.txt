@@ -12,6 +12,10 @@
 - [Unit converter](https://shaleit.tech/units): Convert length, weight, temperature, cooking volume and more. Fractions and 5'11" are accepted.
 - [Favicon maker](https://shaleit.tech/favicon): Make a favicon pack (ICO, PNGs, web manifest) from a letter or an image.
 
+## Self-hosted
+
+- [Lab Docs](https://github.com/shandraco/lab-docs): Fill in contracts (MSA, statement of work), outreach emails and capability statements from templates, and download PDF or Word. A Next.js and PostgreSQL app you run on your own server, with sign-in for your team. MIT License.
+
 ## Source
 
 - [GitHub repository](https://github.com/shandraco/shaleit-tools): The code for every tool.
